@@ -1,0 +1,112 @@
+1 编码
+    为什么要有编码？
+        人类的字符--------- 编码---------》计算机认识的二进制
+
+    编码无非是字符与数字的对应关系
+
+    内存中默认使用：unicode编码
+    硬盘中现在多数情况下：utf-8编码
+
+    utf-8-------decode-------->unicode
+    unicode--------->encode------>utf-8:bytes
+
+
+    注意的问题：python　test,.py
+    1 先从硬盘中找到test.py读入内存
+        #/usr/bin/env python
+        #coding:utf-8  #告诉python解释器以什么编码打开test.py
+    2 执行test.py的代码
+
+
+
+2 文件操作
+    with open('a.txt','r',encoding='utf-8') as f:
+        f.read()
+        f.seek(0)
+        f.readline()
+        f.readlines()
+
+    with open('a.txt','w',encoding='utf-8') as f:
+        f.write('111111\n')
+        f.writelines(['aaaa\n','bbb\n'])
+
+    with open('a.txt','a',encoding='utf-8') as f:
+        f.write('111111\n')
+        f.writelines(['aaaa\n','bbb\n'])
+
+
+    r+
+    w+
+    a+
+
+    rb
+    wb
+
+
+3 函数
+
+
+一：为何用函数之不使用函数的问题
+    #组织结构不清晰，可读性差
+    #代码冗余
+    #无法统一管理且维护难度大
+
+
+二：函数分类：
+    1. 内置函数
+    2. 自定义函数
+
+
+三：为何要定义函数
+    函数即变量，变量必须先定义后使用，未定义而直接引用函数，就相当于在引用一个不存在的变量名
+
+
+四：定义函数都干了哪些事？
+    只检测语法，不执行代码
+
+
+
+五：如何定义函数(函数名要能反映其意义)
+    def foo():
+        '''函数的文档注释'''
+        函数体
+        return 返回值
+
+六：定义函数的三种形式
+    无参：应用场景仅仅只是执行一些操作，比如与用户交互，打印
+    有参：需要根据外部传进来的参数，才能执行相应的逻辑，比如统计长度，求最大值最小值
+    空函数：设计代码结构
+
+
+    def interactive():
+        msg=input(':')
+        l=msg.split()
+        func=l[0]
+
+七 ：函数的调用
+    1 先找到名字
+    2 根据名字调用代码
+
+
+八：函数调用的三种形式
+  1 语句形式：foo()
+  2 表达式形式：3*len('hello')
+  4 当中另外一个函数的参数：range(len('hello'))
+
+九：函数的参数：
+ 1 形参和实参定义
+ 2 形参即变量名，实参即变量值，函数调用则将值绑定到名字上，函数调用结束，解除绑定
+ 3 具体应用
+
+
+
+def foo(x,y): #x=1
+    print(x,y)
+
+foo(1,2)
+
+
+#位置形参，默认参数，*args，命名关键字，**kwargs
+
+
+
