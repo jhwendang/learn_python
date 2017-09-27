@@ -27,7 +27,17 @@
 import re,os,time
 
 def tail(func):
+    """
+    实时监听一个文件里是否是个ip，如果是就执行脚本将ip添加到nginx
+    :param func:
+    :return:
+    """
     def wrapper1(filepath):
+        """
+        实时监听文件改变
+        :param filepath:
+        :return:
+        """
         while True:
             f = open(filepath, 'r')
             ip=f.readline().strip()
@@ -45,6 +55,11 @@ def tail(func):
     return wrapper1
 
 def ip_change(func):
+    """
+    执行脚本
+    :param func:
+    :return:
+    """
     def wrapper2(*args,**kwargs):
         real_ip=func(*args,**kwargs)
         if real_ip:
@@ -55,6 +70,11 @@ def ip_change(func):
 @tail
 @ip_change
 def checkip(ip):
+    """
+    判断是否是ipv4
+    :param ip:
+    :return:
+    """
     p = re.compile('^((25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(25[0-5]|2[0-4]\d|[01]?\d\d?)$')
     if p.match(ip):
         return ip
