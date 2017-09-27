@@ -18,24 +18,36 @@ def time_diff(func1):
         if file_time < now_time:
             #file_time比now_time小，就说明已经过了一天了，测试时改为==便于测试
             #with open('blockips-day2.conf', 'r') as f_r2, open('blockips-day3.conf', 'w') as f_w3: 这种在python2.66不好使
-            with open('blockips-day2.conf', 'r') as f_r2:
-                for line_r2 in f_r2.readlines():
-                    with open('blockips-day3.conf', 'w') as f_w3:
-                        f_w3.writelines(line_r2)
-            with open('blockips-day1.conf', 'r') as f_r1:
-                for line_r1 in f_r1.readlines():
-                    with open('blockips-day2.conf', 'w') as f_w2:
-                        f_w2.writelines(line_r1)
+            f_r2 = open('blockips-day2.conf', 'r')
+            f_w3 = open('blockips-day3.conf', 'w')
+            for line_r2 in f_r2.readlines():
+                f_w3.writelines(line_r2)
+            f_r2.close()
+            f_w3.close()
+            f_r1 = open('blockips-day1.conf', 'r')
+            f_w2 = open('blockips-day2.conf', 'w')
+            for line_r1 in f_r1.readlines():
+                f_w2.writelines(line_r1)
+            f_r1.close()
+            f_w2.close()
         func1()
     return wrapper2
 
 
 def nginxlog_diff(func2):
     def wrapper1():
-        with open('blockips-day1.conf',mode='r') as fr:
-            num1 = len(fr.readlines())
-        if num1 != os.system("cat /data/logs/nginx/access_o2o-80_log | grep /user/register/sms/ |awk '{print $1}'| sort |uniq -c | sort -n | awk '$1>200{print "'"deny "'" $2"'";"'"}'| wc -l "):
-        # if num1 != 5: #由于不是linux，自设定一个判断
+        """
+        不是linux，自建一个文件写入数字对比第一天blockips-day1.conf的行数是否相等
+        :return:
+        """
+        # with open('nginxlog_diff.log', mode='r') as fr1:
+        os.system("cat /data/logs/nginx/access_o2o-80_log | grep /user/register/sms/ |awk '{print $1}'| sort |uniq -c | sort -n | awk '$1>200{print "'"deny "'" $2"'";"'"}'| wc -l > /tmp/nginxlog_diff.log")
+        with open('/tmp/nginxlog_diff.log', mode='r') as fr1:
+            num1 = int(fr1.read())
+        with open('blockips-day1.conf', mode='r') as fr2:
+            num2 = len(fr2.readlines())
+        # if 2 != 5:  # 由于不是linux，自设定一个判断
+        if num1 != num2:
             func2()
     return wrapper1
 
