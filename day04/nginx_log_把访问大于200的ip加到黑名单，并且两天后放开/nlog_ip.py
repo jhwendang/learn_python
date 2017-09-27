@@ -17,12 +17,15 @@ def time_diff(func1):
         # now_time = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
         if file_time < now_time:
             #file_time比now_time小，就说明已经过了一天了，测试时改为==便于测试
-            with open('blockips-day2.conf','r') as f_r2,open('blockips-day3.conf', 'w') as f_w3:
-                    for line_r2 in f_r2.readlines():
+            #with open('blockips-day2.conf', 'r') as f_r2, open('blockips-day3.conf', 'w') as f_w3: 这种在python2.66不好使
+            with open('blockips-day2.conf', 'r') as f_r2:
+                for line_r2 in f_r2.readlines():
+                    with open('blockips-day3.conf', 'w') as f_w3:
                         f_w3.writelines(line_r2)
-            with open('blockips-day1.conf', 'r') as f_r1,open('blockips-day2.conf', 'w') as f_w2:
+            with open('blockips-day1.conf', 'r') as f_r1:
                 for line_r1 in f_r1.readlines():
-                    f_w2.writelines(line_r1)
+                    with open('blockips-day2.conf', 'w') as f_w2:
+                        f_w2.writelines(line_r1)
         func1()
     return wrapper2
 
