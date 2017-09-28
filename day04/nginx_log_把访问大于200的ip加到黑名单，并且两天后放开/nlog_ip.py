@@ -15,8 +15,10 @@ def time_diff(func1):
         file_time = time.strftime("%Y-%m-%d",filemt)
         now_time = time.strftime("%Y-%m-%d",time.localtime(time.time()))
         # now_time = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
+        # file_time比now_time小，就说明已经过了一天了，测试时改为==便于测试
         if file_time < now_time:
-            #file_time比now_time小，就说明已经过了一天了，测试时改为==便于测试
+            #使用iptables防护就打开下面的,重新加载iptables
+            os.system("/etc/init.d/iptables reload")
             #with open('blockips-day2.conf', 'r') as f_r2, open('blockips-day3.conf', 'w') as f_w3: 这种在python2.66不好使
             f_r2 = open('blockips-day2.conf', 'r')
             f_w3 = open('blockips-day3.conf', 'w')
@@ -61,6 +63,30 @@ def nginx_log():
     # with open('ip.txt','r') as test1,open('blockips-day1.conf','w') as test2:
     #     for test111 in test1.readlines():
     #         test2.writelines(test111)
+    # 使用iptables防护，打开最上面的隔天重置:
+    #new写入最新，old用new覆盖
+    i_r2 = open('iptables_new.txt', 'r')
+    i_w3 = open('blockips_old.txt', 'w')
+    for ip_r2 in i_r2.readlines():
+        i_w3.writelines(ip_r2)
+    i_r2.close()
+    i_w3.close()
+    #对比new和old，把new新加的添加到add里，用于iptables
+    os.system("cat /data/logs/nginx/access_o2o-80_log | grep /user/register/sms/ |awk '{print $1}'| sort |uniq -c | sort -n | awk '$1>1000{print "'"deny "'" $2"'";"'"}' > blockips_new.txt")
+    time.sleep(0.5)
+    ip_n = open('iptables_new.txt', 'r')
+    ip_o = open('iptables_old.txt', 'r')
+    ip_a = open('blockips_add.txt', 'w')
+    for ip1 in ip_n.readlines():
+        ip1_1 = ip1.strip()
+        ip_o.seek(0)
+        if ip1_1 not in ip_o.read():
+            ip_a.write(ip1_1 + '\n')
+    ip_n.close()
+    ip_o.close()
+    ip_a.close()
+    os.system("for iIP in `cat blockips_add.txt| grep deny | awk -F';| ' '{print $2}'`; do iptables -I INPUT  -s $iIP -p tcp --dport 80 -j DROP; done")
+    # 使用nginx黑名单防护:
     os.system("cat /data/logs/nginx/access_o2o-80_log | grep /user/register/sms/ |awk '{print $1}'| sort |uniq -c | sort -n | awk '$1>200{print "'"deny "'" $2"'";"'"}' > blockips-day1.conf")
     time.sleep(1)
     os.system("kill -HUP `ps -ef | grep nginx | grep 'master process'|grep -v grep | awk '{print $2}'`")
