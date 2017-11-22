@@ -35,7 +35,7 @@
 #     y=2
 
 
-
+#
 def f1():
     print('first')
     yield 1
@@ -50,6 +50,9 @@ print(res1)
 
 res2=next(g)
 print(res2)
+
+
+
 
 
 

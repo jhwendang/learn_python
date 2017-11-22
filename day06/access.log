@@ -1,0 +1,17 @@
+2017-11-03 21:38:23 PM - root - DEBUG -s3:  debug
+2017-11-03 21:38:23 PM - root - INFO -s3:  info
+2017-11-03 21:38:23 PM - root - WARNING -s3:  warning
+2017-11-03 21:38:23 PM - root - ERROR -s3:  error
+2017-11-03 21:38:23 PM - root - CRITICAL -s3:  critical
+2017-11-03 21:38:23 PM - root - DEBUG -s3:  log
+2017-11-03 21:39:00 PM - root - DEBUG -s3:  debug
+2017-11-03 21:39:00 PM - root - INFO -s3:  info
+2017-11-03 21:39:00 PM - root - WARNING -s3:  warning
+2017-11-03 21:39:00 PM - root - ERROR -s3:  error
+2017-11-03 21:39:00 PM - root - CRITICAL -s3:  critical
+2017-11-03 21:39:00 PM - root - DEBUG -s3:  log
+2017-11-03 21:39:39 PM - root - DEBUG -s3:  debug
+2017-11-03 21:39:39 PM - root - INFO -s3:  info
+2017-11-03 21:39:39 PM - root - WARNING -s3:  warning
+2017-11-03 21:39:39 PM - root - ERROR -s3:  error
+2017-11-03 21:39:39 PM - root - CRITICAL -s3:  critical

@@ -52,11 +52,12 @@
 
 # import spam
 
-# import sys
+import sys
+sys.path.append(r'E:\PycharmProjects\learn\day05\课程\dir1')
 # sys.path.insert(0,r'C:\Users\Administrator\PycharmProjects\python17期\day5\dir1')
 
-# import spam
-# print(spam.money)
+import spam
+print(spam.money)
 
 
 # print(sys.path)

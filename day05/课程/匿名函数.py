@@ -20,7 +20,19 @@ salaries={
 'wupeiqi':10000,
 'yuanhao':2000
 }
+# res=zip(salaries.values(),salaries.keys())
+#
+# def func(k):
+#     return salaries[k]
+#
+# print (max(salaries,key=lambda x:salaries[x]))
 
+# for ii in res:
+    # print(ii)
+
+# print(list(res))
+# for i in salaries.values():
+    # print(i)
 # print(max(salaries))
 # res=zip(salaries.values(),salaries.keys())
 #
@@ -44,7 +56,7 @@ salaries={
 
 # x=1000
 # def f1():
-#     # global x
+#     global x
 #     x=0
 #
 # f1()
@@ -66,6 +78,12 @@ salaries={
 #
 # res=func(max)
 # print(res)
+
+num=[2,4,6,8]
+
+resa=map(lambda x:x**2,num)
+print(resa)
+print(list(resa))
 
 
 # l=['alex','wupeiqi','yuanhao']

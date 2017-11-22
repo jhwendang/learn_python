@@ -75,6 +75,7 @@ def grep(pattern):
         if pattern in cat_file:
             print(file_abs_path)
 
+
 x=r'E:\PycharmProjects\learn\day05\课程'  #x是路径
 p="python"                                #p是过滤字符
 s=search(opener(grep(p)))                 #把grep的执行结果（生成器）当参数传给opener函数的grep_target，又把opener的执行结果（生成器）当参数传给search函数的opener_target

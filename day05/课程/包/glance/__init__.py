@@ -11,7 +11,8 @@
 # import glance.api.policy #glance.api.__init__.py
 
 #
-# from glance.api import policy,versions
+from glance.api import policy,versions
+from glance import api.policy   #报错，import后面必须是具体名字，前面没有点
 # from glance.cmd import manage
 # from glance.db import models
 
@@ -21,10 +22,10 @@
 # def get():
 #     print('=====================>')
 
-# from glance.api.policy import get
-# from glance.api.versions import create_resource
-# from glance.cmd.manage import main
-# from glance.db.models import register_models
+from glance.api.policy import get
+from glance.api.versions import create_resource
+from glance.cmd.manage import main
+from glance.db.models import register_models
 
 
 #

@@ -1,0 +1,103 @@
+面向对象高级
+异常处理
+socket
+
+
+上节课
+
+继承与派生
+    class Foo1:
+        x=1
+        def test(self):
+            pass
+
+    class Bar(Foo1,):
+        def test(self):
+            super().test()
+
+    新式类：广度优先
+    经典类：深度优先
+
+多态
+    同一种事物的多种形态
+    people_obj1.talk()
+    pig_obj1.talk()
+    dog_obj1.talk()
+
+
+    def func(obj):
+        obj.talk()
+
+封装:
+    隐藏
+        class Foo:
+            def __init__(self,age):
+                self.__age=age
+
+            def get_age(self):
+                return self.__age
+    隔离复杂度
+        obj=Foo()
+        obj.get_age()
+
+        class Foo:
+            def __init__(self,age):
+                self.__age=age
+            @property
+            def age(self):
+                return self.__age
+            @age.setter
+            def age(self,arg):
+                self.__age=arg
+            @age.deleter
+            def age(self):
+                del self.__age
+
+
+        obj=Foo()
+        obj.age
+        obj.age=3
+        del obj.age
+
+
+
+
+
+
+                class Foo:
+            def __init__(self,age):
+                self.__age=age
+
+            def get_age(self):
+                return self.__age
+
+            def set_age(self,arg):
+                self.__age=arg
+
+            def del_age(self):
+                del self.__age
+            age=property(get_age,set_age,del_age)
+
+        obj=Foo()
+        #obj.get_age()
+
+        obj.age
+        obj.age=3
+        del obj.age
+
+绑定方法与非绑定方法
+    绑定方法（绑定给谁就是给谁用的）：
+        绑定到对象的方法，obj.test() ,把obj当做第一个参数传入test
+        绑定到类的方法:@classmethod,Foo.bind_method(),把Foo当做第一个参数传入bind_method
+    非绑定方法：
+        @staticmethod，类与对象都可以调用，但是没有自动传值的效果，就相当于类中定义了一个普通函数
+
+反射
+    obj.x #obj.__dict__['x']
+
+    hasattr(obj,'x') #obj.x
+    getattr(obj,'x',None)
+    setattr(obj,'y',3) #obj.y=3
+    delattr(obj,'y')
+
+

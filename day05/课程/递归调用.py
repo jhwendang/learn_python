@@ -20,8 +20,8 @@
 # f1()
 
 # import sys
-# print(sys.getrecursionlimit())
-# print(sys.setrecursionlimit(1000000))
+# print(sys.getrecursionlimit())        #看可以递归多少层
+# print(sys.setrecursionlimit(1000000)) #设置层数
 #
 # print(sys.getrecursionlimit())
 
@@ -32,12 +32,9 @@
 # age(3)=age(2)+2
 # age(2)=age(1)+2
 # age(1)=18
-#
-#
-#
-#
+##---->得到规律：
 # age(n)=age(n-1)+2       n>1
-# age(n)=18    n=1
+# age(n)=18               n=1
 
 # def age(n):
 #     if n == 1:
